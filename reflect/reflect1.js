@@ -21,12 +21,36 @@ let mum = {
   _name: 'Mum'
 }
 
-let person = new Person('Max', 27)
+function TopObj() {
+  this.age = 27;
+}
 
-Reflect.set(person, 'name','Anna', mum)
 
-console.log(mum)
-console.log(person._name)
+
+let person0 = Reflect.construct(Person,['Max'])
+let person1 = Reflect.construct(Person,['Max'], TopObj)
+
+console.log(person0.__proto__ == Person.prototype)   //true
+console.log(person0.__proto__ == TopObj.prototype)   //false
+
+console.log(person1.__proto__ == Person.prototype)   //false
+console.log(person1.__proto__ == TopObj.prototype)   //true
+
+
+let person2 = new Person('Max', 27)
+let person3 = new Person('Maria', 27)
+
+Reflect.set(person2, 'name','Anna', mum)
+Reflect.set(person3, 'name','Aliya')
+
+console.log(person2.__proto__ == Person.prototype)   //true
+console.log(person2.__proto__ == TopObj.prototype)   //false
+
+console.log(person3.__proto__ == Person.prototype)   //true
+console.log(person3.__proto__ == TopObj.prototype)   //false
+
+// console.log(mum)
+// console.log(person._name)
 
 // console.log(Reflect.get(person,'name', mum))
 
