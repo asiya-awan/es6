@@ -1,3 +1,5 @@
-node_modules
-weather-proj/node_modules
-/*/node_modules
+node_modules/
+weather-proj/node_modules/
+
+es6/node_modules/
+es6/weather-proj/node_modules/
